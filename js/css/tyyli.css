@@ -1,0 +1,49 @@
+main {
+    background-color: blanchedalmond;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+#poyta {
+    margin-top: 40px;
+    margin-bottom: 50px;
+    margin-left: 40px;
+    margin-right: 40px;
+    background-color: blue;
+    height: 1000px;
+}
+
+div {
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-right: 10px;
+    text-align: center;
+}
+
+#1, #2, #3, #4,
+#5, #6, #7, #8,
+#9, #10, #11, #12 {
+    margin-top: 25px;
+    margin-bottom: 25px; 
+    text-align: center;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.visible {
+    visibility: visible;
+}
+
+button {
+    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+
