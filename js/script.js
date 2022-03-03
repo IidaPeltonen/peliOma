@@ -259,21 +259,7 @@ $(function () {
     //sivun uudelleen alustava nappi
     $("#uusi").on("click", function () {
         location.reload();
-    });
-
-    //kääntymiset korteille
-    $("#card1").flip({
-        axis: 'y',
-        trigger: 'click'
-    });
-
-    $("#card2").flip({
-        axis: 'x',
-        trigger: 'click'
-    });
-    $("#card3").flip({
-        axis: 'y',
-        trigger: 'click'
+      trigger: 'click'
     });
     $("#card4").flip({
         axis: 'x',
@@ -310,6 +296,20 @@ $(function () {
     $("#card12").flip({
         axis: 'x',
         trigger: 'click'
+    }); });
+
+    //kääntymiset korteille
+    $("#card1").flip({
+        axis: 'y',
+        trigger: 'click'
     });
+
+    $("#card2").flip({
+        axis: 'x',
+        trigger: 'click'
+    });
+    $("#card3").flip({
+        axis: 'y',
+     
 
 });
