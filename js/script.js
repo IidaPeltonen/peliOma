@@ -91,6 +91,14 @@ $(function () {
         $("#tausta10").html('<img src="img/tausta.jpg">');
         $("#tausta11").html('<img src="img/tausta.jpg">');
         $("#tausta12").html('<img src="img/tausta.jpg">');
+        $("#tausta13").html('<img src="img/tausta.jpg">');
+        $("#tausta14").html('<img src="img/tausta.jpg">');
+        $("#tausta15").html('<img src="img/tausta.jpg">');
+        $("#tausta16").html('<img src="img/tausta.jpg">');
+        $("#tausta17").html('<img src="img/tausta.jpg">');
+        $("#tausta18").html('<img src="img/tausta.jpg">');
+        $("#tausta19").html('<img src="img/tausta.jpg">');
+        $("#tausta20").html('<img src="img/tausta.jpg">');
 
         //luodaan muuttuja ekan sijainnin arvontaa varten
         let sijainti = 0;
@@ -200,7 +208,6 @@ $(function () {
         //varataan paikka myös poyta-taulukosta
         poyta[sijainti8] = 1;
 
-
         //luodaan muuttuja ysin sijainnin arvontaa varten
         let sijainti9 = 0;
         //arvotaan paikka, johon kortti arvotaan ja tarkistetaan että paikalla ei ole jo korttia
@@ -256,11 +263,33 @@ $(function () {
         poyta[sijainti12] = 1;
     });
 
+    //testataan pelin logiikkaa
+    function gamelogic(e) {
+        if ($("#card1").classList.contains("play")) {
+
+        }
+    }
+
     //sivun uudelleen alustava nappi
     $("#uusi").on("click", function () {
         location.reload();
       trigger: 'click'
     });
+
+        //kääntymiset korteille
+        $("#card1").flip({
+            axis: 'y',
+            trigger: 'click'
+        });
+    
+        $("#card2").flip({
+            axis: 'x',
+            trigger: 'click'
+        });
+        $("#card3").flip({
+            axis: 'y',
+            trigger: 'click'
+        });
     $("#card4").flip({
         axis: 'x',
         trigger: 'click'
@@ -296,20 +325,6 @@ $(function () {
     $("#card12").flip({
         axis: 'x',
         trigger: 'click'
-    }); });
-
-    //kääntymiset korteille
-    $("#card1").flip({
-        axis: 'y',
-        trigger: 'click'
-    });
-
-    $("#card2").flip({
-        axis: 'x',
-        trigger: 'click'
-    });
-    $("#card3").flip({
-        axis: 'y',
-     
+    });      
 
 });
