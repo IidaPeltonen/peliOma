@@ -10,64 +10,67 @@
     <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
     <link rel="stylesheet" href="css/tyyli.css">
     <meta name="author" content="Tero Rantanen">
-    <title>Muistipeli 1</title>
+    <title>Muistipeli</title>
 </head>
+
 <body>
     <main>
-        <h1>Muistipeli, etsi oikeat parit!</h1>
-        <br />
-        <button type="submit" id="arvo">Arvo kortit</button><button type="submit" id="uusi" class="invisible">Aloita alusta</button>
-        <div id="poyta" class="row">
-            <div class="col-3" id="card1">
-                <div class="front" id="tausta"></div>
-                <div class="back" id="1"></div>
+        ​<header>
+            <h1>MUISTIPELI</h1>
+        </header>
+
+        <section class="main">
+            <div class="row">
+                <div id="kortti1" class="box play"></div>
+                <div id="kortti2" class="box play"></div>
+                <div id="kortti3" class="box play"></div>
+                <div id="kortti4" class="box play"></div>
+                <div id="kortti5" class="box play"></div>
+                <div id="kortti6" class="box play"></div>
+                <div id="kortti7" class="box play"></div>
+                <div id="kortti8" class="box play"></div>
+                <div id="kortti9" class="box play"></div>
+                <div id="kortti10" class="box play"></div>
+                <div id="kortti11" class="box play"></div>
+                <div id="kortti12" class="box play"></div>
+                <div id="kortti13" class="box play"></div>
+                <div id="kortti14" class="box play"></div>
+                <div id="kortti15" class="box play"></div>
+                <div id="kortti16" class="box play"></div>
+                <div id="kortti17" class="box play"></div>
+                <div id="kortti18" class="box play"></div>
+                <div id="kortti19" class="box play"></div>
+                <div id="kortti20" class="box play"></div>
             </div>
-            <div class="col-3" id="card2">
-                <div class="front"  id="tausta2"></div>
-                <div class="back" id="2"></div>
+
+            <div id="state">
+                <span id="aika">0</span>
+                <span id="pisteet">0</span>
             </div>
-            <div class="col-3" id="card3">
-                <div class="front"  id="tausta3"></div>
-                <div class="back" id="3"></div>
+        </section>
+
+        <section id="pre" class="">
+            <div id="themes">
+                <h2>Valise haluamasi teema</h2>
+                <p id="kissat" class="themes" title="Kissat">Kissat</p>
+                <p id="pokemon" class="themes" title="Pokemon">Pokemon</p>
+                <p id="koirat" class="themes" title="Koirat">Koirat</p>
+                <p id="kortit" class="themes" title="Kortit">Pelikortit</p>
             </div>
-            <div class="col-3" id="card4">
-                <div class="front"  id="tausta4"></div>
-                <div class="back" id="4"></div>
+        </section>
+
+        <section id="post" class="hidden">
+            <div>
+                <h2>ONNEA!</h2>
+                <p id="final"></p>
+                <br>
+                <p>
+                    <a id="again">Pelaa uudestaan!</a>
+                </p>
             </div>
-            <div class="col-3" id="card5">
-                <div class="front"  id="tausta5"></div>
-                <div class="back" id="5"></div>
-            </div>
-            <div class="col-3" id="card6">
-                <div class="front"  id="tausta6"></div>
-                <div class="back" id="6"></div>
-            </div>
-            <div class="col-3" id="card7">
-                <div class="front"  id="tausta7"></div>
-                <div class="back" id="7"></div>
-            </div>
-            <div class="col-3" id="card8">
-                <div class="front"  id="tausta8"></div>
-                <div class="back" id="8"></div>
-            </div>
-            <div class="col-3" id="card9">
-                <div class="front" id="tausta9"></div>
-                <div class="back" id="9"></div>
-            </div>
-            <div class="col-3" id="card10">
-                <div class="front"  id="tausta10"></div>
-                <div class="back" id="10"></div>
-            </div>
-            <div class="col-3" id="card11">
-                <div class="front"  id="tausta11"></div>
-                <div class="back" id="11"></div>
-            </div>
-            <div class="col-3" id="card12">
-                <div class="front" id="tausta12"></div>
-                <div class="back" id="12"></div>
-            </div>
-        </div>
+        </section>
     </main>
 </body>
 <script src="js/script.js"></script>
+
 </html>

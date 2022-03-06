@@ -1,49 +1,200 @@
-main {
-    background-color: blanchedalmond;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    margin-left: 20px;
-    margin-right: 20px;
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 100vh;
+  background: #1abc9c;
+  background-image: linear-gradient(to top left, #9b59b6, #1abc9c);
+  font-family: arial;
+  position: relative;
+  text-align: center;
 }
 
-#poyta {
-    margin-top: 40px;
-    margin-bottom: 50px;
-    margin-left: 40px;
-    margin-right: 40px;
-    background-color: blue;
-    height: 1000px;
+/* HEADER */
+header {
+  color: white;
+  letter-spacing: 10px;
+  font-size: larger;
+  padding: 10px 5px;
 }
 
-div {
-    padding-left: 10px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-right: 10px;
-    text-align: center;
+.row {
+  --bs-gutter-x: 0;
+  text-align: center;
 }
 
-#1, #2, #3, #4,
-#5, #6, #7, #8,
-#9, #10, #11, #12 {
-    margin-top: 25px;
-    margin-bottom: 25px; 
-    text-align: center;
+/* erikoisviritys, jolla saadaan "pelikentän" ylä- ja alalaita samankokoisiksi */
+div.box.play {
+  margin-bottom: 10px;
 }
 
-.invisible {
-    visibility: hidden;
+/* main SECTION */
+.main {
+  background: white;
+  width: 900px;
+  padding: 10px 10px 10px 10px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
-.visible {
-    visibility: visible;
+img {
+  max-width: 150px;
+  max-height: 150px;
 }
 
-button {
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    margin-right: 10px;
+.box {
+  background-image: url("https://www.students.oamk.fi/~n0peii00/kuvia/tausta.jpg");
+  width: 150px;
+  height: 150px;
+  margin: 10px 10px 10px 10px;
 }
 
+.box.play:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
 
+.box img {
+  width: 100%;
+  display: block;
+  border: solid 1px transparent;
+}
+
+.box .outlined {
+  border: solid 1px #34495e;
+  background: yellow;
+  opacity: 0.7;
+}
+
+/* STATUS bar */
+#state {
+  background: #6186aa;
+  background-size: 250%;
+  width: 230px;
+  line-height: 25px;
+  float: left;
+  margin: 10px 0 0 10px;
+  padding: 0 10px;
+  color: white;
+  font-size: 16px;
+}
+
+#aika {
+  float: left;
+}
+
+#aika::after {
+  content: ' sec';
+}
+
+#pisteet {
+  float: right;
+}
+
+#pisteet::after {
+  content: ' points';
+}
+
+.hidden {
+  display: none !important;
+}
+
+.show {
+  display: block;
+}
+
+/* PRE modal window */
+#pre {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+#themes {
+  margin: auto;
+  padding: 20px;
+  width: 300px;
+  background: white;
+  color: #6186aa;
+}
+
+#themes p {
+  margin-top: 10px;
+  padding: 10px 20px;
+  border: solid 1px;
+  background: white;
+  color: #6186aa;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#themes p:hover {
+  background: #6186aa;
+  background-size: 250%;
+  color: white;
+}
+
+#pre h2,
+#post h2 {
+  font-size: 24px;
+  font-weight: normal;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+}
+
+/* POST modal window */
+#post {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+}
+
+#post > div {
+  width: 300px;
+  padding: 20px 0 40px;
+  background: white;
+  color: #6186aa;
+}
+
+#post p:first-child,
+#post #final {
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin: auto;
+  padding: 10px 20px;
+}
+
+#post #again {
+  color: #6186aa;
+  text-decoration: none;
+  margin: auto;
+  padding: 10px 20px;
+  width: 160px;
+  border: solid 1px;
+}
+
+#post #again:hover {
+  background: #6186aa;
+  background-size: 250%;
+  color: white;
+  cursor: pointer;
+}

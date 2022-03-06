@@ -1,315 +1,298 @@
 $(function () {
 
-    //kortit taulukkoon
-    let kortit = [
-        //nolla-indeksiin tyhjä kuva, tätä ei voi tulla arvonnasta, muttase muuttaa taulukon indeksinumeroa
-        '<img src="">', //indeksi 0
-        '<img src="img/pata/pataA.png">', //indeksi 1
-        '<img src="img/pata/pata2.png">', //indeksi 2
-        '<img src="img/pata/pata3.png">', //indeksi 3
-        '<img src="img/pata/pata4.png">', //indeksi 4
-        '<img src="img/pata/pata5.png">', //indeksi 5
-        '<img src="img/pata/pata6.png">', //indeksi 6
-        '<img src="img/pata/pata7.png">', //indeksi 7
-        '<img src="img/pata/pata8.jpeg">', //indeksi 8
-        '<img src="img/pata/pata9.png">', //indeksi 9
-        '<img src="img/pata/pata10.jpeg">', //indeksi 10
-        '<img src="img/pata/pataJ.png">', //indeksi 11
-        '<img src="img/pata/pataQ.jpeg">', //indeksi 12
-        '<img src="img/pata/pataK.png">', //indeksi 13
-        '<img src="img/risti/ristiA.jpeg">', //indeksi 14
-        '<img src="img/risti/risti2.png">', //indeksi 15
-        '<img src="img/risti/risti3.png">', //indeksi 16
-        '<img src="img/risti/risti4.jpg">', //indeksi 17
-        '<img src="img/risti/risti5.png">', //indeksi 18
-        '<img src="img/risti/risti6.png">', //indeksi 19
-        '<img src="img/risti/risti7.png">', //indeksi 20
-        '<img src="img/risti/risti8.png">', //indeksi 21
-        '<img src="img/risti/risti9.png">', //indeksi 22
-        '<img src="img/risti/risti10.png">', //indeksi 23
-        '<img src="img/risti/ristiJ.jpeg">', //indeksi 24
-        '<img src="img/risti/ristiQ.jpeg">', //indeksi 25
-        '<img src="img/risti/ristiK.jpeg">', //indeksi 26
-        '<img src="img/hertta/herttaA.png">', //indeksi 27
-        '<img src="img/hertta/hertta2.png">', //indeksi 28
-        '<img src="img/hertta/hertta3.jpeg">', //indeksi 29
-        '<img src="img/hertta/hertta4.jpeg">', //indeksi 30
-        '<img src="img/hertta/hertta5.jpeg">', //indeksi 31
-        '<img src="img/hertta/hertta6.jpeg">', //indeksi 32
-        '<img src="img/hertta/hertta7.jpeg">', //indeksi 33
-        '<img src="img/hertta/hertta8.jpeg">', //indeksi 34
-        '<img src="img/hertta/hertta9.jpeg">', //indeksi 35
-        '<img src="img/hertta/hertta10.png">', //indeksi 36
-        '<img src="img/hertta/herttaJ.png">', //indeksi 37
-        '<img src="img/hertta/herttaQ.jpeg">', //indeksi 38
-        '<img src="img/hertta/herttaK.jpeg">', //indeksi 39
-        '<img src="img/ruutu/ruutuA.jpg">', //indeksi 40
-        '<img src="img/ruutu/ruutu2.png">', //indeksi 41
-        '<img src="img/ruutu/ruutu3.png">', //indeksi 42
-        '<img src="img/ruutu/ruutu4.jpeg">', //indeksi 43
-        '<img src="img/ruutu/ruutu5.png">', //indeksi 44
-        '<img src="img/ruutu/ruutu6.png">', //indeksi 45
-        '<img src="img/ruutu/ruutu7.png">', //indeksi 46
-        '<img src="img/ruutu/ruutu8.png">', //indeksi 47
-        '<img src="img/ruutu/ruutu9.png">', //indeksi 48
-        '<img src="img/ruutu/ruutu10.png">', //indeksi 49
-        '<img src="img/ruutu/ruutuJ.JPG">', //indeksi 50
-        '<img src="img/ruutu/ruutuQ.png">', //indeksi 51
-        '<img src="img/ruutu/ruutuK.jpeg">', //indeksi 52
-    ];
-
-    //asetetaan sijainnit täyteen nollia -> jos sijainnissa ei ole nollaa, se on jo varattu
-    let poyta = [];
-    for (let i = 0; i < 13; i++) {
-        poyta.push("0");
-    }
-
-    //asetetaan pakka-taulu täyteen nollia -> jos sijainnissa ei ole nollaa, se on jo varattu
-    let pakka = [];
-    for (let i = 0; i < 52; i++) {
-        pakka.push("0");
-    }
-    
-    $("#arvo").on("click", function () {
-
-        //piilotetaan arvo uudet-nappi
-        $("#arvo").addClass("invisible");
-
-        //näytetään arvo uudet-nappi
-        $("#uusi").removeClass("invisible");
-
-        //asetetaan kaikkien korttien taustakuvaksi sama tausta
-        $("#tausta").html('<img src="img/tausta.jpg">');
-        $("#tausta2").html('<img src="img/tausta.jpg">');
-        $("#tausta3").html('<img src="img/tausta.jpg">');
-        $("#tausta4").html('<img src="img/tausta.jpg">');
-        $("#tausta5").html('<img src="img/tausta.jpg">');
-        $("#tausta6").html('<img src="img/tausta.jpg">');
-        $("#tausta7").html('<img src="img/tausta.jpg">');
-        $("#tausta8").html('<img src="img/tausta.jpg">');
-        $("#tausta9").html('<img src="img/tausta.jpg">');
-        $("#tausta10").html('<img src="img/tausta.jpg">');
-        $("#tausta11").html('<img src="img/tausta.jpg">');
-        $("#tausta12").html('<img src="img/tausta.jpg">');
-
-        //luodaan muuttuja ekan sijainnin arvontaa varten
-        let sijainti = 0;
-        //arvotaan paikka, johon kortti arvotaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti = (Math.floor(Math.random() * 12) + 1).toString()
-         } while (poyta[sijainti] != "0");
-        //arvotaan kortti kyseiseen paikkaan, varmistetaan ettei sitä ole jo käytetty
-        let eka = 0;
-        do {
-            eka = Math.floor(Math.random() * 52) + 1;
-        } while (pakka[eka] != 0);
-        //asetetaan kortti arvottuun paikkaan
-        $("#" + sijainti).html(kortit[eka]);
-        //varataan paikka poyta- ja kortit-taulukosta
-        poyta[sijainti] = 1;
-        pakka[eka] = 1;
-        //luodaan muuttuja ekan kortin parille
-        let sijainti2 = 0;
-        //arvotaan paikka, johon pari asetetaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti2 = (Math.floor(Math.random() * 12) + 1).toString()
-        } while (poyta[sijainti2] != "0");
-        //asetetaan pari kyseiseen paikkaan
-        $("#" + sijainti2).html(kortit[eka]);
-        //varataan paikka myös poyta-taulukosta
-        poyta[sijainti2] = 1;
-
-        //luodaan muuttuja kolmannen sijainnin arvontaa varten
-        let sijainti3 = 0;
-        //arvotaan paikka, johon kortti arvotaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti3 = (Math.floor(Math.random() * 12) + 1).toString()
-         } while (poyta[sijainti3] != "0");
-        //arvotaan kortti kyseiseen paikkaa, varmistetaan ettei sitä ole jo käytetty
-        let toka = 0;
-        do {
-            toka = Math.floor(Math.random() * 52) + 1;
-        } while (pakka[toka] != 0);
-        //asetetaan kortti arvottuun paikkaan
-        $("#" + sijainti3).html(kortit[toka]);
-         //varataan paikka poyta- ja kortit-taulukosta
-         poyta[sijainti3] = 1;
-         pakka[pakka] = 1;
-        //luodaan muuttuja kolmannen kortin parille
-        let sijainti4 = 0;
-        //arvotaan paikka, johon pari asetetaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti4 = (Math.floor(Math.random() * 12) + 1).toString()
-        } while (poyta[sijainti4] != "0");
-        //asetetaan pari kyseiseen paikkaan
-        $("#" + sijainti4).html(kortit[toka]);
-        //varataan paikka myös poyta-taulukosta
-        poyta[sijainti4] = 1;
-
-        //luodaan muuttuja viidennen sijainnin arvontaa varten
-        let sijainti5 = 0;
-        //arvotaan paikka, johon kortti arvotaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti5 = (Math.floor(Math.random() * 12) + 1).toString()
-         } while (poyta[sijainti5] != "0");
-        //arvotaan kortti kyseiseen paikkaa, varmistetaan ettei sitä ole jo käytetty
-        let kolmas = 0;
-        do {
-            kolmas = Math.floor(Math.random() * 52) + 1;
-        } while (pakka[kolmas] != 0);
-        //asetetaan kortti arvottuun paikkaan
-        $("#" + sijainti5).html(kortit[kolmas]);
-        //varataan paikka myös poyta-taulukosta
-        poyta[sijainti5] = 1;
-        pakka[kolmas] = 1;
-        //luodaan muuttuja viidennen kortin parille
-        let sijainti6 = 0;
-        //arvotaan paikka, johon pari asetetaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti6 = (Math.floor(Math.random() * 12) + 1).toString()
-        } while (poyta[sijainti6] != "0");
-        //asetetaan pari kyseiseen paikkaan
-        $("#" + sijainti6).html(kortit[kolmas]);
-        //varataan paikka myös poyta-taulukosta
-        poyta[sijainti6] = 1;
-
-        //luodaan muuttuja seikan sijainnin arvontaa varten
-        let sijainti7 = 0;
-        //arvotaan paikka, johon kortti arvotaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti7 = (Math.floor(Math.random() * 12) + 1).toString()
-         } while (poyta[sijainti7] != "0");
-       //arvotaan kortti kyseiseen paikkaa, varmistetaan ettei sitä ole jo käytetty
-       let neljas = 0;
-       do {
-        neljas = Math.floor(Math.random() * 52) + 1;
-       } while (pakka[neljas] != 0);
-        //asetetaan kortti arvottuun paikkaan
-        $("#" + sijainti7).html(kortit[neljas]);
-        //varataan paikka myös poyta-taulukosta
-        poyta[sijainti7] = 1;
-        pakka[neljas] = 1;
-        //luodaan muuttuja viidennen kortin parille
-        let sijainti8 = 0;
-        //arvotaan paikka, johon pari asetetaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti8 = (Math.floor(Math.random() * 12) + 1).toString()
-        } while (poyta[sijainti8] != "0");
-        //asetetaan pari kyseiseen paikkaan
-        $("#" + sijainti8).html(kortit[neljas]);
-        //varataan paikka myös poyta-taulukosta
-        poyta[sijainti8] = 1;
-
-
-        //luodaan muuttuja ysin sijainnin arvontaa varten
-        let sijainti9 = 0;
-        //arvotaan paikka, johon kortti arvotaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti9 = (Math.floor(Math.random() * 12) + 1).toString()
-         } while (poyta[sijainti9] != "0");
-        //arvotaan kortti kyseiseen paikkaa, varmistetaan ettei sitä ole jo käytetty
-       let viides = 0;
-       do {
-        viides = Math.floor(Math.random() * 52) + 1;
-       } while (pakka[viides] != 0);
-        //asetetaan kortti arvottuun paikkaan
-        $("#" + sijainti9).html(kortit[viides]);
-        //varataan paikka myös poyta-taulukosta
-        poyta[sijainti9] = 1;
-        pakka[viides] = 1;
-        //luodaan muuttuja viidennen kortin parille
-        let sijainti10 = 0;
-        //arvotaan paikka, johon pari asetetaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti10 = (Math.floor(Math.random() * 12) + 1).toString()
-        } while (poyta[sijainti10] != "0");
-        //asetetaan pari kyseiseen paikkaan
-        $("#" + sijainti10).html(kortit[viides]);
-        //varataan paikka myös poyta-taulukosta
-        poyta[sijainti10] = 1;
-
-        //luodaan muuttuja 11 sijainnin arvontaa varten
-        let sijainti11 = 0;
-        //arvotaan paikka, johon kortti arvotaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti11 = (Math.floor(Math.random() * 12) + 1).toString()
-         } while (poyta[sijainti11] != "0");
-        //arvotaan kortti kyseiseen paikkaa, varmistetaan ettei sitä ole jo käytetty
-       let kuudes = 0;
-       do {
-        kuudes = Math.floor(Math.random() * 52) + 1;
-       } while (pakka[kuudes] != 0);
-        //asetetaan kortti arvottuun paikkaan
-        $("#" + sijainti11).html(kortit[kuudes]);
-        //varataan paikka myös poyta-taulukosta
-        poyta[sijainti11] = 1;
-        pakka[kuudes] = 1;
-        //luodaan muuttuja viidennen kortin parille
-        let sijainti12 = 0;
-        //arvotaan paikka, johon pari asetetaan ja tarkistetaan että paikalla ei ole jo korttia
-        do {
-            sijainti12 = (Math.floor(Math.random() * 12) + 1).toString()
-        } while (poyta[sijainti12] != "0");
-        //asetetaan pari kyseiseen paikkaan
-        $("#" + sijainti12).html(kortit[kuudes]);
-        //varataan paikka myös poyta-taulukosta
-        poyta[sijainti12] = 1;
-    });
-
-    //sivun uudelleen alustava nappi
-    $("#uusi").on("click", function () {
-        location.reload();
+    $("#kortti1").flip({
+      axis: 'x',
       trigger: 'click'
-    });
-    $("#card4").flip({
-        axis: 'x',
-        trigger: 'click'
-    });
-    $("#card5").flip({
-        axis: 'y',
-        trigger: 'click'
-    });
-    $("#card6").flip({
-        axis: 'x',
-        trigger: 'click'
-    });
-    $("#card7").flip({
-        axis: 'y',
-        trigger: 'click'
-    });
-    $("#card8").flip({
-        axis: 'x',
-        trigger: 'click'
-    });
-    $("#card9").flip({
-        axis: 'y',
-        trigger: 'click'
-    });
-    $("#card10").flip({
-        axis: 'x',
-        trigger: 'click'
-    });
-    $("#card11").flip({
-        axis: 'y',
-        trigger: 'click'
-    });
-    $("#card12").flip({
-        axis: 'x',
-        trigger: 'click'
-    }); });
+  });
+  $("#kortti2").flip({
+      axis: 'y',
+      trigger: 'click'
+  });
+  $("#kortti3").flip({
+      axis: 'x',
+      trigger: 'click'
+  });
+  $("#kortti4").flip({
+      axis: 'y',
+      trigger: 'click'
+  });
+  $("#kortti5").flip({
+      axis: 'x',
+      trigger: 'click'
+  });
+  $("#kortti6").flip({
+      axis: 'y',
+      trigger: 'click'
+  });
+  $("#kortti7").flip({
+      axis: 'x',
+      trigger: 'click'
+  });
+  $("#kortti8").flip({
+      axis: 'y',
+      trigger: 'click'
+  });
+  $("#kortti9").flip({
+      axis: 'x',
+      trigger: 'click'
+  }); 
+  $("#kortti10").flip({
+    axis: 'y',
+    trigger: 'click'
+  });
+  $("#kortti11").flip({
+      axis: 'x',
+      trigger: 'click'
+  });
+  $("#kortti12").flip({
+      axis: 'y',
+      trigger: 'click'
+  });
+  $("#kortti13").flip({
+      axis: 'x',
+      trigger: 'click'
+  });
+  $("#kortti14").flip({
+      axis: 'y',
+      trigger: 'click'
+  });
+  $("#kortti15").flip({
+      axis: 'x',
+      trigger: 'click'
+  }); 
+  $("#kortti16").flip({
+    axis: 'y',
+    trigger: 'click'
+  });
+  $("#kortti17").flip({
+    axis: 'x',
+    trigger: 'click'
+  });
+  $("#kortti18").flip({
+    axis: 'y',
+    trigger: 'click'
+  });
+  $("#kortti19").flip({
+    axis: 'x',
+    trigger: 'click'
+  });
+  $("#kortti20").flip({
+    axis: 'y',
+    trigger: 'click'
+  });
 
-    //kääntymiset korteille
-    $("#card1").flip({
-        axis: 'y',
-        trigger: 'click'
-    });
 
-    $("#card2").flip({
-        axis: 'x',
-        trigger: 'click'
-    });
-    $("#card3").flip({
-        axis: 'y',
-     
+
+//kuvakirjastot eri teemoille, taulukkoina
+var library = {
+    
+    kissat: [
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/kikkis.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/liisa.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/lilli.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/lissu.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/miukku.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/onni.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/repa.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/simo.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/ulpu.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/vake.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/kikkis.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/liisa.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/lilli.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/lissu.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/miukku.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/onni.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/repa.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/simo.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/ulpu.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/kissat/vake.JPG'
+    ],
+    pokemon: [
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980025/memory/Pokemon/Bulbasaur.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980083/memory/Pokemon/Charmander.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980101/memory/Pokemon/Squirtle.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980116/memory/Pokemon/Pikachu.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980129/memory/Pokemon/Mewtwo.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980142/memory/Pokemon/Mew.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980154/memory/Pokemon/Articuno.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980164/memory/Pokemon/Zapdos.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980175/memory/Pokemon/Moltres.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980186/memory/Pokemon/Eevee.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980025/memory/Pokemon/Bulbasaur.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980083/memory/Pokemon/Charmander.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980101/memory/Pokemon/Squirtle.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980116/memory/Pokemon/Pikachu.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980129/memory/Pokemon/Mewtwo.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980142/memory/Pokemon/Mew.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980154/memory/Pokemon/Articuno.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980164/memory/Pokemon/Zapdos.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980175/memory/Pokemon/Moltres.png',
+      'https://res.cloudinary.com/beumsk/image/upload/v1547980186/memory/Pokemon/Eevee.png'
+    ],
+    koirat: [
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/alma.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/esko.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/kettu.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/lola.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira17.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira15.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira14.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira11.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira3.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira7.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/alma.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/esko.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/kettu.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/lola.JPG',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira17.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira15.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira14.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira11.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira3.jpg',
+      'https://www.students.oamk.fi/~n0peii00/kuvia/koirat/koira7.jpg'
+    ],
+    kortit: [
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/hertta6.jpeg',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/herttaQ.jpeg',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/pata2.png',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/pataA.png',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/pataJ.png',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/pataQ.jpeg',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/risti7.png',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/ristiA.jpeg',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/ristiQ.jpeg',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/ruutuQ.png',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/hertta6.jpeg',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/herttaQ.jpeg',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/pata2.png',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/pataA.png',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/pataJ.png',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/pataQ.jpeg',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/risti7.png',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/ristiA.jpeg',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/ristiQ.jpeg',
+        'https://www.students.oamk.fi/~n0peii00/kuvia/kortit/ruutuQ.png',
+        ]
+  }
+  
+  //muuttujat palapelille
+  var kuvat = [];
+  var tempElt1 = "";
+  var tempElt2 = "";
+  var click = -1;
+  var voitot = 0;
+  var pisteet = 0;
+  var aika = 0;
+  
+  //muuttujat laskureille, pisteille, jne
+  var preElt = document.querySelector("#pre");
+  var teematElt = document.querySelector("#themes");
+  var boxElts = document.getElementsByClassName("box");
+  var mainElt = document.querySelector(".main");
+  var aikaElt = document.querySelector("#aika");
+  var pisteetElt = document.querySelector("#pisteet");
+  var postElt = document.querySelector("#post");
+  var finalElt = document.querySelector("#final");
+  var againElt = document.querySelector("#again");
+  
+  // kertoo minkä teeman käyttäjä valitsi
+  teematElt.addEventListener("click", function(e) {
+    if (e.target.classList.contains("themes")) {
+      activateTheme(e.target.id);
+      preElt.classList.add("hidden");
+    }
+  });
+  
+  //aktivoi valitun teeman
+  function activateTheme(theme) {
+    // insert theme in images array
+    for (let i = 0; i < 20; i++) {kuvat.push(library[theme][i]);}  
+    // insert images in memory game
+    for (let i = 0; i < 20; i++) {
+      var rand = Math.floor(Math.random() * (kuvat.length - 1));
+      boxElts[i].innerHTML = "<img src='" + kuvat[rand] + "' alt='image' class='hidden'>";
+      kuvat.splice(rand, 1);
+    }
+  }
+
+  //pelin käsittely
+  mainElt.addEventListener("click", gameLogic);
+  
+  function gameLogic(e) {
+    //varmista boksin käsittely
+    if (e.target.classList.contains("play")) {
+      e.target.firstChild.classList.remove("hidden");
+      //lasketaan ekat kaksi klikkiä
+      if (click < 1) {
+        tempElt1 = e.target;
+        //ajastinn
+        if (click === -1) {
+          timer = setInterval(function() {
+            aika++;
+            aikaElt.innerHTML = aika;
+          }, 1000);
+        }
+        click = 1;
+      }
+  
+      //toinen klikkaus
+      else if (e.target !== tempElt1) {
+        tempElt2 = e.target;
+        //ei paria
+        if (tempElt1.firstChild.src !== tempElt2.firstChild.src) {
+          mainElt.removeEventListener("click", gameLogic);
+          setTimeout( function() {
+            tempElt1.firstChild.classList.add("hidden");
+            tempElt2.firstChild.classList.add("hidden");
+            mainElt.addEventListener("click", gameLogic);
+          }, 400);
+          if (pisteet > 0) {
+            pisteet -= 2;
+          }
+          pisteetElt.innerHTML = pisteet;
+        }
+  
+        //pari
+        else {
+          pisteet += 10;
+          voitot += 2;
+          tempElt1.firstChild.classList.add("outlined");
+          tempElt2.firstChild.classList.add("outlined");
+          tempElt1.classList.remove("play");
+          tempElt2.classList.remove("play");
+          pisteetElt.innerHTML = pisteet;
+  
+          //voitettu peli
+          if (voitot === 20) {
+            clearInterval(timer);
+            finalElt.innerHTML = "Sait " + pisteet + " pistettä <br> " + aika + "ssa sekunnissa";
+            postElt.classList.remove("hidden");
+          }
+        }
+        click = 0;
+      }
+    }
+  }
+  
+  againElt.addEventListener("click", resetGame);
+  
+  function resetGame() {
+    // aloittaa pelin alusta
+    tempElt1 = "";
+    tempElt2 = "";
+    click = -1;
+    voitot = 0;
+    pisteet = 0;
+    aika = 0;
+    postElt.classList.add("hidden");
+    preElt.classList.remove("hidden");
+    for (let i = 0; i < 20; i++) {
+      boxElts[i].classList.add("play");
+      boxElts[i].firstChild.classList.add("hidden");
+    }
+    aikaElt.textContent = aika;
+    pisteetElt.textContent = pisteet;
+  }
 
 });
